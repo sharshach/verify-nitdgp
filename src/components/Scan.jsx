@@ -29,6 +29,8 @@ export default class Scan extends Component {
         var c = document.getElementById("myCanvas");
         console.log(c);
         var ctx = c.getContext("2d");
+        ctx.fillStyle = "white";
+        ctx.fillRect(0, 0, 200, 240);
         ctx.fillStyle = "black";
         for(i=0;i<120;i++){
             for(var j=0;j<100;j++){
