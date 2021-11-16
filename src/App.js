@@ -1,16 +1,24 @@
 import './App.css';
 import Report from './components/Report';
-import data from './text.json';
+import data from './data/text.json';
 import Codes from './components/Codes';
 import Scan from './components/Scan';
+import SecureReport from './components/SecureReport';
  
 function App() {
     var roll=new URLSearchParams(window.location.search).get("roll");
-    console.log(roll);
-    if(window.location.pathname==="/scan"){
+    const path=window.location.pathname.substr(1);
+    if(path==="scan"){
         return (
             <div className="App">    
                 <Scan/>
+            </div>
+        )
+    }
+    if(path==="1"||path==="2"){
+        return (
+            <div className="App">    
+                <SecureReport mode={path==="1"?1:2}/>
             </div>
         )
     }
