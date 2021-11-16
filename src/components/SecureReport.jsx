@@ -18,7 +18,8 @@ export default class SecureReport extends Component {
         if(verify(this.props.mode,roll,pass)){
             this.setState({roll,status:this.props.mode,pass});
         }else{
-            this.setState({status:99});
+            if(this.props.mode===2)this.setState({roll,status:29});
+            else this.setState({status:99});
         }
     }
     
@@ -37,6 +38,14 @@ export default class SecureReport extends Component {
                     <Report roll={this.state.roll}/>
                 </div>
             )
+        else if(status===29)
+        return (
+            <div>
+                <BitImage id={this.state.roll+"_original"} path={paths[this.state.roll]}/>
+                <BitImage id={this.state.roll+"_qr"} path={this.state.pass}/>
+                <h1>Error In Fetching Details QRcode image not matched properly</h1>
+            </div>
+        )
         else return <h1>Error In Fetching Details QRcode Not matched with database</h1>
     }
 }
