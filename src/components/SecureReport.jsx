@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
 import Report from './Report'
 import {verify} from './helper'
+import BitImage from './BitImage'
+import paths from '../data/paths.json'
 
 export default class SecureReport extends Component {
     constructor(props) {
@@ -13,12 +15,9 @@ export default class SecureReport extends Component {
     componentDidMount(){
         var roll=new URLSearchParams(window.location.search).get("roll");
         var pass=new URLSearchParams(window.location.search).get("pass");
-        console.log(roll,pass);
         if(verify(this.props.mode,roll,pass)){
-            console.log("verified");
             this.setState({roll,status:this.props.mode,pass});
         }else{
-            console.log("not verified");
             this.setState({status:99});
         }
     }
@@ -33,6 +32,8 @@ export default class SecureReport extends Component {
         else if(status===2)
             return (
                 <div>
+                    <BitImage id={this.state.roll+"_original"} path={paths[this.state.roll]}/>
+                    <BitImage id={this.state.roll+"_qr"} path={this.state.pass}/>
                     <Report roll={this.state.roll}/>
                 </div>
             )
