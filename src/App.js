@@ -1,6 +1,5 @@
 import './App.css';
 import Report from './components/Report';
-import data from './data/text.json';
 import Codes from './components/Codes';
 import Scan from './components/Scan';
 import SecureReport from './components/SecureReport';
@@ -32,11 +31,7 @@ function App() {
     roll=roll.toUpperCase()
     return (
         <div className="App">
-            <Report
-                name={data.details[roll] &&data.details[roll].name}
-                cgpa={data.details[roll]&&data.details[roll].cgpa}
-                src={"DATA/"+roll+".jpeg"}
-            >
+            <Report roll={roll}>
             </Report>
         </div>
     );

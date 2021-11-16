@@ -13,9 +13,12 @@ export default class SecureReport extends Component {
     componentDidMount(){
         var roll=new URLSearchParams(window.location.search).get("roll");
         var pass=new URLSearchParams(window.location.search).get("pass");
-        if(verify(this.state.mode,roll,pass)){
-            this.setState({roll,status:this.state.mode,pass});
+        console.log(roll,pass);
+        if(verify(this.props.mode,roll,pass)){
+            console.log("verified");
+            this.setState({roll,status:this.props.mode,pass});
         }else{
+            console.log("not verified");
             this.setState({status:99});
         }
     }
